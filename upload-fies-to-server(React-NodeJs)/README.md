@@ -1,4 +1,3 @@
-
 # Upload file to server (NodeJs - React)
 
 ## Frontend code
@@ -17,7 +16,7 @@ function MainScreen() {
 
     await axios.post("/api/upload", formData, {
       headers: { "Content-Type": "multipart/form-data" },
-    }); 
+    });
   };
 
   return (
@@ -40,24 +39,25 @@ function MainScreen() {
   );
 }
 ```
+
 ## Frontend code
 
 ```js
 const storage = multer.diskStorage({
-      destination: './public/uploads/' ,
-      filename: function (req, file, cb) {
-        cb(null, file.originalname)
-      }
-    })
+  destination: "./public/uploads/",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
 
-app.post('/upload' , (req ,res ) => {
-  upload(req, res ,err  => {
-        if (err) {
-              console.log('error happened')
-        } else {
-              console.log(req.file)
-        }
-  }) 
-  res.sendStatus(200)
-  })
+app.post("/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      console.log("error happened");
+    } else {
+      console.log(req.file);
+    }
+  });
+  res.sendStatus(200);
+});
 ```
